@@ -12,6 +12,13 @@ public class Aircraft_Test {
     }
 
     @Test
+    public void Aircraft_Age() {
+        Aircraft a1 = new Aircraft();
+        Aircraft a2 = new Aircraft();
+        Assert.assertTrue( a1.getAircraftAge() < a2.getAircraftAge());
+    }
+
+    @Test
     public void Aircraft_Type() {
         Aircraft pass = new Aircraft()
                 .type(Aircraft.Type.PASSENGER);
@@ -31,6 +38,24 @@ public class Aircraft_Test {
         Aircraft large = new Aircraft()
                 .size(Aircraft.Size.LARGE);
         Assert.assertEquals(Aircraft.Size.LARGE, large.getAircraftSize());
+    }
+
+    @Test
+    public void Aircraft_Equality_Type() {
+        Aircraft pass = new Aircraft().type(Aircraft.Type.PASSENGER);
+        Aircraft carg = new Aircraft().type(Aircraft.Type.CARGO);
+        Aircraft def  = new Aircraft();
+
+        Assert.assertEquals(Aircraft.Type.CARGO, carg.getAircraftType());
+    }
+
+    @Test
+    public void Aircraft_Equality_Size() {
+        Aircraft lg  = new Aircraft().size(Aircraft.Size.LARGE);
+        Aircraft sm  = new Aircraft().size(Aircraft.Size.SMALL);
+        Aircraft def  = new Aircraft();
+
+        Assert.assertEquals(Aircraft.Size.LARGE, lg.getAircraftSize());
     }
 
 }

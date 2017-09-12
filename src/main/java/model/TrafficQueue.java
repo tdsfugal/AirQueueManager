@@ -1,14 +1,16 @@
 package model;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.PriorityQueue;
+import service.PriorityComparator;
 
 public class TrafficQueue {
 
-    private List<Aircraft> queue;
+    private PriorityComparator comparator;
+    private PriorityQueue<Aircraft> queue;
 
-    TrafficQueue() {
-        queue = new ArrayList<Aircraft>();
+    TrafficQueue(PriorityComparator comparator) {
+        this.comparator = comparator;
+        queue = new PriorityQueue<Aircraft>(this.comparator);
     }
 
     public int waiting () {
@@ -18,6 +20,10 @@ public class TrafficQueue {
     public TrafficQueue enqueue(Aircraft a) {
         queue.add(a);
         return this;
+    }
+
+    public Aircraft dequeue() {
+        return queue.remove();
     }
 }
 

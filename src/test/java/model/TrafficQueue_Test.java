@@ -1,18 +1,21 @@
 package model;
 
 import org.junit.*;
+import service.PriorityComparator;
 
 public class TrafficQueue_Test {
 
     @Test
     public void EmptyQueue() {
-        TrafficQueue q = new TrafficQueue();
+        PriorityComparator comparator = new PriorityComparator();
+        TrafficQueue q = new TrafficQueue(comparator);
         Assert.assertEquals(0, q.waiting());
     }
 
     @Test
-    public void EnqueudAllForms() {
-        TrafficQueue q = new TrafficQueue();
+    public void EnqueueAllForms() {
+        PriorityComparator comparator = new PriorityComparator();
+        TrafficQueue q = new TrafficQueue(comparator);
 
         Aircraft def = new Aircraft();
         q.enqueue(def);
@@ -36,6 +39,48 @@ public class TrafficQueue_Test {
         q.enqueue(lg_carg);
 
         Assert.assertEquals(9, q.waiting());
+    }
+
+
+    @Test
+    public void DequeueAllForms() {
+        PriorityComparator comparator = new PriorityComparator();
+        TrafficQueue q = new TrafficQueue(comparator);
+
+        Aircraft def = new Aircraft();
+        q.enqueue(def);
+
+        Aircraft sm_carg1 = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.CARGO);
+        Aircraft sm_pass1 = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.PASSENGER);
+        Aircraft lg_carg1 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
+        Aircraft lg_pass1 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        q.enqueue(sm_carg1);
+        q.enqueue(sm_pass1);
+        q.enqueue(lg_carg1);
+        q.enqueue(lg_pass1);
+
+        Aircraft sm_carg2 = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.CARGO);
+        Aircraft sm_pass2 = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.PASSENGER);
+        Aircraft lg_carg2 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
+        Aircraft lg_pass2 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        q.enqueue(sm_carg2);
+        q.enqueue(sm_pass2);
+        q.enqueue(lg_carg2);
+        q.enqueue(lg_pass2);
+
+        Assert.assertEquals(lg_pass1, q.dequeue());
+        Assert.assertEquals(lg_pass2, q.dequeue());
+
+        Assert.assertEquals(sm_pass1, q.dequeue());
+        Assert.assertEquals(sm_pass2, q.dequeue());
+
+        Assert.assertEquals(lg_carg1, q.dequeue());
+        Assert.assertEquals(lg_carg2, q.dequeue());
+
+        Assert.assertEquals(sm_carg1, q.dequeue());
+        Assert.assertEquals(sm_carg2, q.dequeue());
+
+        Assert.assertEquals(def     , q.dequeue());    // Unknown aircraft are last
     }
 
 }

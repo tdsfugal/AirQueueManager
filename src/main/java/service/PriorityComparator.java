@@ -17,11 +17,11 @@ public class PriorityComparator implements Comparator<Aircraft> {
         Aircraft.Type t1 = a1.getAircraftType();
         Aircraft.Type t2 = a2.getAircraftType();
 
-        if ( t1 == Aircraft.Type.PASSENGER && t2 == Aircraft.Type.CARGO ) return +1;
-        if ( t1 == Aircraft.Type.CARGO && t2 == Aircraft.Type.PASSENGER ) return -1;
+        if ( t1 == Aircraft.Type.PASSENGER && t2 == Aircraft.Type.CARGO ) return -1;
+        if ( t1 == Aircraft.Type.CARGO && t2 == Aircraft.Type.PASSENGER ) return +1;
 
-        if ( t1 == Aircraft.Type.UNKNOWN  ) return -1;  // Arbitrary, but hey, they're unknown...
-        if ( t2 == Aircraft.Type.UNKNOWN )  return +1;
+        if ( t1 == Aircraft.Type.UNKNOWN  ) return +1;  // Arbitrary, but hey, they're unknown...
+        if ( t2 == Aircraft.Type.UNKNOWN )  return -1;
 
         // At this point it is known that a1 and a2 are the same type
 
@@ -29,16 +29,16 @@ public class PriorityComparator implements Comparator<Aircraft> {
         Aircraft.Size s1 = a1.getAircraftSize();
         Aircraft.Size s2 = a2.getAircraftSize();
 
-        if ( s1 == Aircraft.Size.LARGE && s2 == Aircraft.Size.SMALL ) return +1;
-        if ( s1 == Aircraft.Size.SMALL && s2 == Aircraft.Size.LARGE ) return -1;
+        if ( s1 == Aircraft.Size.LARGE && s2 == Aircraft.Size.SMALL ) return -1;
+        if ( s1 == Aircraft.Size.SMALL && s2 == Aircraft.Size.LARGE ) return +1;
 
-        if ( s1 == Aircraft.Size.UNKNOWN  ) return -1;
-        if ( s2 == Aircraft.Size.UNKNOWN )  return +1;
+        if ( s1 == Aircraft.Size.UNKNOWN  ) return +1;
+        if ( s2 == Aircraft.Size.UNKNOWN )  return -1;
 
         // At this point it is known that a1 and a2 are the same size and type
 
         // Third Check:  Aircraft that have been waiting longer (lower spot no.) have priority if they are the same size and type.
-        return a2.getAircraftSpot() - a1.getAircraftSpot();
+        return a1.getAircraftSpot() - a2.getAircraftSpot();
 
     }
 

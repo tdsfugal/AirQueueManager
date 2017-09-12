@@ -12,10 +12,10 @@ public class Aircraft_Test {
     }
 
     @Test
-    public void Aircraft_Age() {
+    public void Aircraft_Spot() {
         Aircraft a1 = new Aircraft();
         Aircraft a2 = new Aircraft();
-        Assert.assertTrue( a1.getAircraftAge() < a2.getAircraftAge());
+        Assert.assertTrue( a1.getAircraftSpot() < a2.getAircraftSpot());
     }
 
     @Test

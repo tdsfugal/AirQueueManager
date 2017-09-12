@@ -23,15 +23,15 @@ public class Aircraft {
         }
     }
 
-    // integer provides enough time indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
+    // integer provides enough spot indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
     private static int count = 0;
-    private int  aircraftAge;
+    private int aircraftSpot;        // Larger spot numbers queued later
 
     private Type aircraftType;
     private Size aircraftSize;
 
     public Aircraft() {
-        this.aircraftAge  = count++;
+        this.aircraftSpot = count++;
         this.aircraftType = Type.UNKNOWN;
         this.aircraftSize = Size.UNKNOWN;
     }
@@ -55,8 +55,8 @@ public class Aircraft {
         return aircraftSize;
     }
 
-    public int getAircraftAge() {
-        return aircraftAge;
+    public int getAircraftSpot() {
+        return aircraftSpot;
     }
 
 }

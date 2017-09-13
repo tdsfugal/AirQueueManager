@@ -13,6 +13,26 @@ public class TrafficQueue_Test {
     }
 
     @Test
+    public void ClearQueue() {
+        PriorityComparator comparator = new PriorityComparator();
+        TrafficQueue q = new TrafficQueue(comparator);
+
+        Aircraft sm_pass = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.PASSENGER);
+        Aircraft sm_carg = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.CARGO);
+        Aircraft lg_pass = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        Aircraft lg_carg = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
+
+        q.enqueue(sm_pass);
+        q.enqueue(sm_carg);
+        q.enqueue(lg_pass);
+        q.enqueue(lg_carg);
+        Assert.assertEquals(4, q.waiting());
+
+        q.clear();
+        Assert.assertEquals(0, q.waiting());
+    }
+
+    @Test
     public void EnqueueAllForms() {
         PriorityComparator comparator = new PriorityComparator();
         TrafficQueue q = new TrafficQueue(comparator);

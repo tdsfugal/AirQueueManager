@@ -1,14 +1,14 @@
 package model;
 
 import java.util.PriorityQueue;
-import service.PriorityComparator;
+import service.AirQueuePriorityComparator;
 
-public class TrafficQueue {
+public class AirQueue {
 
-    private PriorityComparator comparator;
+    private AirQueuePriorityComparator comparator;
     private PriorityQueue<Aircraft> queue;
 
-    public TrafficQueue(PriorityComparator comparator) {
+    public AirQueue(AirQueuePriorityComparator comparator) {
         this.comparator = comparator;
         queue = new PriorityQueue<Aircraft>(this.comparator);
     }

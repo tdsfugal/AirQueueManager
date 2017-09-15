@@ -1,5 +1,5 @@
 package model;
 
-public enum TrafficServiceRequestType {
+public enum AirQueueManagerRequestType {
     START, ENQUEUE, DEQUEUE;
 }

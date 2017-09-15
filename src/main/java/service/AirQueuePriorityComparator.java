@@ -5,7 +5,7 @@ import model.Aircraft;
 import java.util.Comparator;
 
 
-public class PriorityComparator implements Comparator<Aircraft> {
+public class AirQueuePriorityComparator implements Comparator<Aircraft> {
 
     public int compare(Aircraft a1, Aircraft a2) throws NullPointerException, ClassCastException {
 

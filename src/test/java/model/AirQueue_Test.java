@@ -1,21 +1,21 @@
 package model;
 
 import org.junit.*;
-import service.PriorityComparator;
+import service.AirQueuePriorityComparator;
 
-public class TrafficQueue_Test {
+public class AirQueue_Test {
 
     @Test
     public void EmptyQueue() {
-        PriorityComparator comparator = new PriorityComparator();
-        TrafficQueue q = new TrafficQueue(comparator);
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueue q = new AirQueue(comparator);
         Assert.assertEquals(0, q.waiting());
     }
 
     @Test
     public void ClearQueue() {
-        PriorityComparator comparator = new PriorityComparator();
-        TrafficQueue q = new TrafficQueue(comparator);
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueue q = new AirQueue(comparator);
 
         Aircraft sm_pass = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.PASSENGER);
         Aircraft sm_carg = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.CARGO);
@@ -34,8 +34,8 @@ public class TrafficQueue_Test {
 
     @Test
     public void EnqueueAllForms() {
-        PriorityComparator comparator = new PriorityComparator();
-        TrafficQueue q = new TrafficQueue(comparator);
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueue q = new AirQueue(comparator);
 
         Aircraft def = new Aircraft();
         q.enqueue(def);
@@ -64,8 +64,8 @@ public class TrafficQueue_Test {
 
     @Test
     public void DequeueAllForms() {
-        PriorityComparator comparator = new PriorityComparator();
-        TrafficQueue q = new TrafficQueue(comparator);
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueue q = new AirQueue(comparator);
 
         Aircraft def = new Aircraft();
         q.enqueue(def);

@@ -3,7 +3,7 @@ package service;
 import model.Aircraft;
 import org.junit.*;
 
-public class PriorityComparator_Test {
+public class AirQueuePriorityComparator_Test {
 
     // Lesser Aircraft dequeue earlier than greater Aircraft
 
@@ -14,7 +14,7 @@ public class PriorityComparator_Test {
         Aircraft lg_pass  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         Aircraft lg_carg  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
 
-        PriorityComparator pc = new PriorityComparator();
+        AirQueuePriorityComparator pc = new AirQueuePriorityComparator();
 
         Assert.assertTrue(0 == pc.compare( sm_pass  , sm_pass  ));
         Assert.assertTrue(0 == pc.compare( sm_carg  , sm_carg  ));
@@ -32,7 +32,7 @@ public class PriorityComparator_Test {
         Aircraft sm_pass  = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.PASSENGER);
         Aircraft sm_carg  = new Aircraft().size(Aircraft.Size.SMALL).type(Aircraft.Type.CARGO);
 
-        PriorityComparator pc = new PriorityComparator();
+        AirQueuePriorityComparator pc = new AirQueuePriorityComparator();
 
         Assert.assertTrue(0 > pc.compare( sm_carg  , def_carg ));
         Assert.assertTrue(0 > pc.compare( sm_carg  , def_lg   ));
@@ -48,7 +48,7 @@ public class PriorityComparator_Test {
         Aircraft lg_pass  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         Aircraft lg_carg  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
 
-        PriorityComparator pc = new PriorityComparator();
+        AirQueuePriorityComparator pc = new AirQueuePriorityComparator();
 
         Assert.assertTrue( 0 > pc.compare( lg_pass  , lg_carg  ));
         Assert.assertTrue( 0 > pc.compare( sm_pass  , sm_carg  ));
@@ -64,7 +64,7 @@ public class PriorityComparator_Test {
         Aircraft lg_pass  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         Aircraft lg_carg  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
 
-        PriorityComparator pc = new PriorityComparator();
+        AirQueuePriorityComparator pc = new AirQueuePriorityComparator();
 
         Assert.assertTrue(0 > pc.compare( lg_pass  , sm_pass  ));
         Assert.assertTrue(0 > pc.compare( lg_carg  , sm_carg  ));
@@ -85,7 +85,7 @@ public class PriorityComparator_Test {
         Aircraft lg_pass2  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         Aircraft lg_carg2  = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.CARGO);
 
-        PriorityComparator pc = new PriorityComparator();
+        AirQueuePriorityComparator pc = new AirQueuePriorityComparator();
 
         Assert.assertTrue(0 > pc.compare( sm_pass1  , sm_pass2  ));
         Assert.assertTrue(0 > pc.compare( sm_carg1  , sm_carg2  ));

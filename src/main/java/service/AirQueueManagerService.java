@@ -1,18 +1,18 @@
 package service;
 
 import model.Aircraft;
-import model.TrafficQueue;
-import model.TrafficServiceRequestType;
+import model.AirQueue;
+import model.AirQueueManagerRequestType;
 
-public class TrafficService {
+public class AirQueueManagerService {
 
-    private PriorityComparator comparator;
-    private TrafficQueue queue;
+    private AirQueuePriorityComparator comparator;
+    private AirQueue queue;
     private Boolean started;
 
-    public TrafficService() {
-        this.comparator = new PriorityComparator();
-        this.queue = new TrafficQueue(comparator);
+    public AirQueueManagerService() {
+        this.comparator = new AirQueuePriorityComparator();
+        this.queue = new AirQueue(comparator);
         started = false;
     }
 
@@ -44,7 +44,7 @@ public class TrafficService {
         return null;
     }
 
-    public Aircraft aqmRequestProcess(TrafficServiceRequestType request, Aircraft aircraft) {
+    public Aircraft aqmRequestProcess(AirQueueManagerRequestType request, Aircraft aircraft) {
 
         switch (request) {
             case START:
@@ -62,7 +62,7 @@ public class TrafficService {
 
     }
 
-    public Aircraft aqmRequestProcess(TrafficServiceRequestType request) {
+    public Aircraft aqmRequestProcess(AirQueueManagerRequestType request) {
         return aqmRequestProcess(request, null);
     }
 }

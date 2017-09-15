@@ -1,6 +1,7 @@
 package model;
 
 public class Aircraft {
+
     public enum Type {
         PASSENGER ("Passenger"),
         CARGO ("Cargo"),

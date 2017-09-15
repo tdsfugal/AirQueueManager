@@ -21,9 +21,8 @@ public class TrafficQueue {
         queue.clear();
     }
 
-    public TrafficQueue enqueue(Aircraft a) {
-        queue.add(a);
-        return this;
+    public void enqueue(Aircraft a) {
+        if (a != null) queue.add(a);
     }
 
     public Aircraft dequeue() {

@@ -8,7 +8,8 @@ public class AirQueueManagerService_Test {
 
     @Test
     public void TestServiceStart() {
-        AirQueueManagerService service = new AirQueueManagerService();
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueueManagerService service = new AirQueueManagerService(comparator);
 
         Aircraft foo = new Aircraft().type(Aircraft.Type.PASSENGER).size(Aircraft.Size.LARGE);
 
@@ -27,7 +28,8 @@ public class AirQueueManagerService_Test {
 
     @Test
     public void TestServicePolicy() {
-        AirQueueManagerService service = new AirQueueManagerService();
+        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
+        AirQueueManagerService service = new AirQueueManagerService(comparator);
         service.aqmRequestProcess(AirQueueManagerRequestType.START);
 
         // first batch

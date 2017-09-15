@@ -5,10 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fugaltech.com</groupId>
-    <artifactId>AirTrafficTest</artifactId>
+    <artifactId>AirQueueManager</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.7.RELEASE</version>
+    </parent>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -16,12 +25,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.3.11.RELEASE</version>
-        </dependency>
     </dependencies>
-
 
 </project>

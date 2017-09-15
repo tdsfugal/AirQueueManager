@@ -6,12 +6,10 @@ import model.AirQueueManagerRequestType;
 
 public class AirQueueManagerService {
 
-    private AirQueuePriorityComparator comparator;
     private AirQueue queue;
     private Boolean started;
 
-    public AirQueueManagerService() {
-        this.comparator = new AirQueuePriorityComparator();
+    public AirQueueManagerService(AirQueuePriorityComparator comparator) {
         this.queue = new AirQueue(comparator);
         started = false;
     }

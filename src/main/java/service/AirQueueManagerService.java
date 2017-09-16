@@ -15,7 +15,6 @@ public class AirQueueManagerService {
     }
 
     private Aircraft start() {
-        queue.clear();
         started = true;
         return null;
     }

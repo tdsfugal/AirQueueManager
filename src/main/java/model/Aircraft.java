@@ -2,6 +2,9 @@ package model;
 
 public class Aircraft {
 
+    /**
+     * The Type Enum describes the type of aircraft.  Currently only cargo and passenger types are supported.
+     */
     public enum Type {
         PASSENGER ("Passenger"),
         CARGO ("Cargo"),
@@ -13,6 +16,9 @@ public class Aircraft {
         }
     }
 
+    /**
+     * The Size enum describes the size of the aircraft.  Currently only large and small sizes are supported.
+     */
     public enum Size {
         LARGE ("Small"),
         SMALL ("Large"),
@@ -58,6 +64,11 @@ public class Aircraft {
 
     public int getAircraftSpot() {
         return aircraftSpot;
+    }
+
+    public String toString() {
+        return "The Aircraft queued at time " + aircraftSpot +
+                " is a " + aircraftSize + " " + aircraftType + " aircraft.";
     }
 
 }

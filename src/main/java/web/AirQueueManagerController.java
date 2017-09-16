@@ -1,15 +1,21 @@
 package web;
 
+import model.Aircraft;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
-import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import service.AirQueueManagerService;
 import service.AirQueuePriorityComparator;
 
-import static model.AirQueueManagerRequestType.START;
+import javax.annotation.*;
 
-@Controller
+import static model.AirQueueManagerRequestType.DEQUEUE;
+import static model.AirQueueManagerRequestType.ENQUEUE;
+import static model.AirQueueManagerRequestType.START;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+@RestController
 @EnableAutoConfiguration
 public class AirQueueManagerController {
 
@@ -20,11 +26,28 @@ public class AirQueueManagerController {
         this.service = new AirQueueManagerService(comparator);
     }
 
-    @RequestMapping("/start")
-    @ResponseBody
-    String start() {
+    @RequestMapping(value="/start", method=GET)
+    public String start() {
         service.aqmRequestProcess(START);
-        return "Air Queue Manager Started!";
+
+        Aircraft ac1 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        service.aqmRequestProcess(ENQUEUE, ac1);
+
+        return "Air Queue Manager Started";
+    }
+
+
+    @RequestMapping(value="/enqueue", method=POST)
+    public String enqueue(Object request) {
+        Aircraft ac = new Aircraft();
+        service.aqmRequestProcess(START);
+        return ac.toString();
+    }
+
+    @RequestMapping(value="/dequeue", method=GET)
+    public String dequeue() {
+        Aircraft ac = service.aqmRequestProcess(DEQUEUE);
+        return (ac != null) ? ac.toString() : "Queue is Empty";
     }
 
     public static void main(String[] args) throws Exception {
@@ -32,3 +55,4 @@ public class AirQueueManagerController {
     }
 
 }
+

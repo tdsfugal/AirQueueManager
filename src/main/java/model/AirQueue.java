@@ -17,16 +17,28 @@ public class AirQueue {
         return queue.size();
     }
 
-    public void clear() {
-        queue.clear();
-    }
-
-    public void enqueue(Aircraft a) {
-        if (a != null) queue.add(a);
+    public Aircraft enqueue(Aircraft a) {
+        try {
+            if (a != null) {
+                queue.add(a);
+                return a;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Aircraft dequeue() {
-        return queue.remove();
+        try {
+            if (waiting() > 0) {
+                return queue.remove();
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

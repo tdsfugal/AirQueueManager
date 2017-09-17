@@ -34,16 +34,16 @@ public class Aircraft {
         }
     }
 
-    // integer provides enough spot indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
+    // integer provides enough indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
     private static int count = 0;
-    private int enqueueOrder;        // Larger spot numbers queued later
+    private int enqueueOrder;
 
-    private ZonedDateTime queueTime;        // Larger spot numbers queued later
+    private ZonedDateTime enqueueTime;
     private Type type;
     private Size size;
 
     public Aircraft() {
-        this.queueTime = ZonedDateTime.now();
+        this.enqueueTime = ZonedDateTime.now();
         this.enqueueOrder = count++;
         this.type = Type.UNKNOWN;
         this.size = Size.UNKNOWN;
@@ -69,7 +69,7 @@ public class Aircraft {
     }
 
     public ZonedDateTime getQueueTime() {
-        return queueTime;
+        return enqueueTime;
     }
 
     public int getEnqueueOrder() {
@@ -77,7 +77,7 @@ public class Aircraft {
     }
 
     public String toString() {
-        return "The Aircraft queued at time " + queueTime +
+        return "The Aircraft queued at time " + enqueueTime +
                 " is a " + size + " " + type + " aircraft.";
     }
 

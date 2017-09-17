@@ -6,11 +6,11 @@ import service.AirQueuePriorityComparator;
 public class AirQueue {
 
     private AirQueuePriorityComparator comparator;
-    private PriorityQueue<Aircraft> queue;
+    private PriorityQueue<AirQueueSpot> queue;
 
     public AirQueue(AirQueuePriorityComparator comparator) {
         this.comparator = comparator;
-        queue = new PriorityQueue<Aircraft>(this.comparator);
+        queue = new PriorityQueue<AirQueueSpot>(this.comparator);
     }
 
     public int waiting() {
@@ -20,7 +20,7 @@ public class AirQueue {
     public Aircraft enqueue(Aircraft a) {
         try {
             if (a != null) {
-                queue.add(a);
+                queue.add( new AirQueueSpot(a) );
                 return a;
             }
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class AirQueue {
     public Aircraft dequeue() {
         try {
             if (waiting() > 0) {
-                return queue.remove();
+                return queue.remove().getAircraft();
             }
             return null;
         } catch (Exception e) {

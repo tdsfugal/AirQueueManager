@@ -1,17 +1,25 @@
 package service;
 
+import model.AirQueue;
+import model.AirQueueSpot;
 import model.Aircraft;
 
 import java.util.Comparator;
 
 
-public class AirQueuePriorityComparator implements Comparator<Aircraft> {
+public class AirQueuePriorityComparator implements Comparator<AirQueueSpot> {
 
-    public int compare(Aircraft a1, Aircraft a2) throws NullPointerException, ClassCastException {
+    @Override
+    public int compare(AirQueueSpot spot1, AirQueueSpot spot2) {
+        if ( spot1 == null ) throw new NullPointerException();
+        if ( spot2 == null ) throw new NullPointerException();
+
+        // Compare aircraft first
+        Aircraft a1 = spot1.getAircraft();
+        Aircraft a2 = spot2.getAircraft();
 
         if ( a1 == null ) throw new NullPointerException();
         if ( a2 == null ) throw new NullPointerException();
-
 
         // First Check:  Passenger aircraft have priority over cargo aircraft.  (Assume type Unknown takes lowest priority)
         Aircraft.Type t1 = a1.getType();
@@ -35,10 +43,8 @@ public class AirQueuePriorityComparator implements Comparator<Aircraft> {
         if ( s1 == Aircraft.Size.UNKNOWN  ) return +1;
         if ( s2 == Aircraft.Size.UNKNOWN )  return -1;
 
-        // At this point it is known that a1 and a2 are the same size and type
-
-        // Third Check:  Aircraft that have been waiting longer (lower spot no.) have priority if they are the same size and type.
-        return a1.getEnqueueOrder() - a2.getEnqueueOrder();
+        // Third check. The aircraft are similar so compare on the enqueue times.
+        return spot1.getEnqueueOrder() - spot2.getEnqueueOrder();
     }
 
 }

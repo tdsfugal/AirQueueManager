@@ -31,7 +31,7 @@ public class AirQueueManagerController {
     public String start() {
         service.aqmRequestProcess(START);
 
-        Aircraft ac = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         service.aqmRequestProcess(ENQUEUE, ac);
 
         return "This should return the web page as a static HTML file";
@@ -40,7 +40,7 @@ public class AirQueueManagerController {
 
     @RequestMapping(value="/enqueue", method=POST)
     public String enqueue(Object request) {
-        Aircraft ac = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         service.aqmRequestProcess(ENQUEUE, ac);
         return ac.toJson();
     }

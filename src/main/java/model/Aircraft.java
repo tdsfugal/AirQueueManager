@@ -1,8 +1,9 @@
 package model;
 
 import com.google.gson.*;
+import com.google.gson.annotations.Expose;
 
-import java.time.ZonedDateTime;
+import java.util.UUID;
 
 public class Aircraft {
 
@@ -14,9 +15,14 @@ public class Aircraft {
         CARGO ("Cargo"),
         UNKNOWN ("Unknown");
 
-        private final String value;
-        Type (String value) {
-            this.value = value;
+        private final String name;
+        Type (String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.name;
         }
     }
 
@@ -24,27 +30,33 @@ public class Aircraft {
      * The Size enum describes the size of the aircraft.  Currently only large and small sizes are supported.
      */
     public enum Size {
-        LARGE ("Small"),
-        SMALL ("Large"),
+        LARGE ("Large"),
+        SMALL ("Small"),
         UNKNOWN ("Unknown");
 
-        private final String value;
-        Size (String value) {
-            this.value = value;
+        private final String name;
+        Size (String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.name;
         }
     }
 
-    // integer provides enough indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
-    private static int count = 0;
-    private int enqueueOrder;
-
-    private ZonedDateTime enqueueTime;
+    private String id;
     private Type type;
     private Size size;
 
+    public Aircraft(String id) {
+        this.id = id;
+        this.type = Type.UNKNOWN;
+        this.size = Size.UNKNOWN;
+    }
+
     public Aircraft() {
-        this.enqueueTime = ZonedDateTime.now();
-        this.enqueueOrder = count++;
+        this.id = UUID.randomUUID().toString();
         this.type = Type.UNKNOWN;
         this.size = Size.UNKNOWN;
     }
@@ -60,6 +72,10 @@ public class Aircraft {
         return this;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public Type getType() {
         return type;
     }
@@ -68,25 +84,27 @@ public class Aircraft {
         return size;
     }
 
-    public ZonedDateTime getQueueTime() {
-        return enqueueTime;
+    @Override
+    public boolean equals(Object that) {
+        if (that instanceof Aircraft) {
+            Aircraft thatA = (Aircraft) that;
+            return this.getId() == thatA.getId() &&
+                    this.getSize() == thatA.getSize() &&
+                    this.getType() == thatA.getType();
+        } else {
+            return false;
+        }
     }
 
-    public int getEnqueueOrder() {
-        return enqueueOrder;
-    }
-
+    @Override
     public String toString() {
-        return "The Aircraft queued at time " + enqueueTime +
-                " is a " + size + " " + type + " aircraft.";
+        return "Aircraft " + id + " is a " + size + ", " + type + " aircraft.";
     }
 
     public String toJson() {
         try {
-            Gson g = new Gson();
-            String elem = g.toJson(this);
-            System.out.println(elem);
-            return elem;
+            Gson g = new GsonBuilder().create();
+            return g.toJson(this);
         } catch (Exception e) {
             e.printStackTrace();
             return "";

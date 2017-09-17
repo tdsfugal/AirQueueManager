@@ -1,5 +1,9 @@
 package model;
 
+import com.google.gson.*;
+
+import java.time.ZonedDateTime;
+
 public class Aircraft {
 
     /**
@@ -30,45 +34,54 @@ public class Aircraft {
         }
     }
 
-    // integer provides enough spot indexes for an airport use case.  At 60 aircraft/hr int works for 4085 years.
-    private static int count = 0;
-    private int aircraftSpot;        // Larger spot numbers queued later
-
-    private Type aircraftType;
-    private Size aircraftSize;
+    private ZonedDateTime queueTime;        // Larger spot numbers queued later
+    private Type type;
+    private Size size;
 
     public Aircraft() {
-        this.aircraftSpot = count++;
-        this.aircraftType = Type.UNKNOWN;
-        this.aircraftSize = Size.UNKNOWN;
+        this.queueTime = ZonedDateTime.now();
+        this.type = Type.UNKNOWN;
+        this.size = Size.UNKNOWN;
     }
 
     // Builder pattern instead of setters. Use case is immutable-ish.
     public Aircraft type(Type type) {
-        this.aircraftType = type;
+        this.type = type;
         return this;
     }
 
     public Aircraft size(Size size) {
-        this.aircraftSize = size;
+        this.size = size;
         return this;
     }
 
-    public Type getAircraftType() {
-        return aircraftType;
+    public Type getType() {
+        return type;
     }
 
-    public Size getAircraftSize() {
-        return aircraftSize;
+    public Size getSize() {
+        return size;
     }
 
-    public int getAircraftSpot() {
-        return aircraftSpot;
+    public ZonedDateTime getQueueTime() {
+        return queueTime;
     }
 
     public String toString() {
-        return "The Aircraft queued at time " + aircraftSpot +
-                " is a " + aircraftSize + " " + aircraftType + " aircraft.";
+        return "The Aircraft queued at time " + queueTime +
+                " is a " + size + " " + type + " aircraft.";
+    }
+
+    public String toJson() {
+        try {
+            Gson g = new Gson();
+            String elem = g.toJson(this);
+            System.out.println(elem);
+            return elem;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 }

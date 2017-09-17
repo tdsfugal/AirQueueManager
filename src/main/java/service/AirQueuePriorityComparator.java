@@ -14,8 +14,8 @@ public class AirQueuePriorityComparator implements Comparator<Aircraft> {
 
 
         // First Check:  Passenger aircraft have priority over cargo aircraft.  (Assume type Unknown takes lowest priority)
-        Aircraft.Type t1 = a1.getAircraftType();
-        Aircraft.Type t2 = a2.getAircraftType();
+        Aircraft.Type t1 = a1.getType();
+        Aircraft.Type t2 = a2.getType();
 
         if ( t1 == Aircraft.Type.PASSENGER && t2 == Aircraft.Type.CARGO ) return -1;
         if ( t1 == Aircraft.Type.CARGO && t2 == Aircraft.Type.PASSENGER ) return +1;
@@ -26,8 +26,8 @@ public class AirQueuePriorityComparator implements Comparator<Aircraft> {
         // At this point it is known that a1 and a2 are the same type
 
         // Second Check:  Larger aircraft have priority over smaller aircraft of the same type.  (Assume type Unknown takes lowest priority)
-        Aircraft.Size s1 = a1.getAircraftSize();
-        Aircraft.Size s2 = a2.getAircraftSize();
+        Aircraft.Size s1 = a1.getSize();
+        Aircraft.Size s2 = a2.getSize();
 
         if ( s1 == Aircraft.Size.LARGE && s2 == Aircraft.Size.SMALL ) return -1;
         if ( s1 == Aircraft.Size.SMALL && s2 == Aircraft.Size.LARGE ) return +1;
@@ -38,7 +38,7 @@ public class AirQueuePriorityComparator implements Comparator<Aircraft> {
         // At this point it is known that a1 and a2 are the same size and type
 
         // Third Check:  Aircraft that have been waiting longer (lower spot no.) have priority if they are the same size and type.
-        return a1.getAircraftSpot() - a2.getAircraftSpot();
+        return a2.getQueueTime().compareTo(a1.getQueueTime());
 
     }
 

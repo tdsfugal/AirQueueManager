@@ -1,5 +1,6 @@
 package web;
 
+import com.google.gson.JsonNull;
 import model.Aircraft;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
@@ -26,28 +27,29 @@ public class AirQueueManagerController {
         this.service = new AirQueueManagerService(comparator);
     }
 
-    @RequestMapping(value="/start", method=GET)
+    @RequestMapping(value="/", method=GET)
     public String start() {
         service.aqmRequestProcess(START);
 
-        Aircraft ac1 = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
-        service.aqmRequestProcess(ENQUEUE, ac1);
+        Aircraft ac = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        service.aqmRequestProcess(ENQUEUE, ac);
 
-        return "Air Queue Manager Started";
+        return "This should return the web page as a static HTML file";
     }
 
 
     @RequestMapping(value="/enqueue", method=POST)
     public String enqueue(Object request) {
-        Aircraft ac = new Aircraft();
-        service.aqmRequestProcess(START);
-        return ac.toString();
+        Aircraft ac = new Aircraft().size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
+        service.aqmRequestProcess(ENQUEUE, ac);
+        return ac.toJson();
     }
 
     @RequestMapping(value="/dequeue", method=GET)
     public String dequeue() {
         Aircraft ac = service.aqmRequestProcess(DEQUEUE);
-        return (ac != null) ? ac.toString() : "Queue is Empty";
+        String json = (ac != null) ? ac.toJson() : "{}";
+        return json;
     }
 
     public static void main(String[] args) throws Exception {

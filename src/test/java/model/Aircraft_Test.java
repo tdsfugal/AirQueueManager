@@ -15,7 +15,7 @@ public class Aircraft_Test {
     public void Aircraft_Spot() {
         Aircraft a1 = new Aircraft();
         Aircraft a2 = new Aircraft();
-        Assert.assertTrue(a1.getAircraftSpot() < a2.getAircraftSpot());
+        Assert.assertTrue(a1.getEnqueueOrder() < a2.getEnqueueOrder());
     }
 
     @Test

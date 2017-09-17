@@ -2,7 +2,6 @@ package service;
 
 import model.Aircraft;
 import model.AirQueue;
-import model.AirQueueManagerRequestType;
 
 public class AirQueueManagerService {
 

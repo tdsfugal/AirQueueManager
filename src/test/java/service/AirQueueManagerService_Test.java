@@ -1,7 +1,6 @@
 package service;
 
 import model.Aircraft;
-import model.AirQueueManagerRequestType;
 import org.junit.*;
 
 public class AirQueueManagerService_Test {

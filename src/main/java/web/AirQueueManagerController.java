@@ -1,6 +1,5 @@
 package web;
 
-import com.google.gson.JsonNull;
 import model.Aircraft;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
@@ -8,11 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import service.AirQueueManagerService;
 import service.AirQueuePriorityComparator;
 
-import javax.annotation.*;
-
-import static model.AirQueueManagerRequestType.DEQUEUE;
-import static model.AirQueueManagerRequestType.ENQUEUE;
-import static model.AirQueueManagerRequestType.START;
+import static service.AirQueueManagerRequestType.DEQUEUE;
+import static service.AirQueueManagerRequestType.ENQUEUE;
+import static service.AirQueueManagerRequestType.START;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 

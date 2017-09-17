@@ -38,8 +38,7 @@ public class AirQueuePriorityComparator implements Comparator<Aircraft> {
         // At this point it is known that a1 and a2 are the same size and type
 
         // Third Check:  Aircraft that have been waiting longer (lower spot no.) have priority if they are the same size and type.
-        return a2.getQueueTime().compareTo(a1.getQueueTime());
-
+        return a1.getAircraftSpot() - a2.getAircraftSpot();
     }
 
 }

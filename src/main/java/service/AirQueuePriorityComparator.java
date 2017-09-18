@@ -1,6 +1,5 @@
 package service;
 
-import model.AirQueue;
 import model.AirQueueSpot;
 import model.Aircraft;
 
@@ -44,7 +43,7 @@ public class AirQueuePriorityComparator implements Comparator<AirQueueSpot> {
         if ( s2 == Aircraft.Size.UNKNOWN )  return -1;
 
         // Third check. The aircraft are similar so compare on the enqueue times.
-        return spot1.getEnqueueOrder() - spot2.getEnqueueOrder();
+        return spot1.getEnqueueIndex() - spot2.getEnqueueIndex();
     }
 
 }

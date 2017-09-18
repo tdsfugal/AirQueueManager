@@ -2,14 +2,19 @@ package service;
 
 import model.Aircraft;
 import model.AirQueue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AirQueueManagerService {
 
     private AirQueue queue;
     private Boolean started;
 
-    public AirQueueManagerService(AirQueuePriorityComparator comparator) {
-        this.queue = new AirQueue(comparator);
+    @Autowired
+    public AirQueueManagerService(AirQueue queue) {
+        this.queue = queue;
         started = false;
     }
 

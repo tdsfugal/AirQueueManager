@@ -1,5 +1,6 @@
 package service;
 
+import model.AirQueue;
 import model.Aircraft;
 import org.junit.*;
 
@@ -8,7 +9,8 @@ public class AirQueueManagerService_Test {
     @Test
     public void TestServiceStart() {
         AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
-        AirQueueManagerService service = new AirQueueManagerService(comparator);
+        AirQueue queue = new AirQueue(comparator);
+        AirQueueManagerService service = new AirQueueManagerService(queue);
 
         Aircraft foo = new Aircraft().type(Aircraft.Type.PASSENGER).size(Aircraft.Size.LARGE);
 
@@ -28,7 +30,8 @@ public class AirQueueManagerService_Test {
     @Test
     public void TestServicePolicy() {
         AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
-        AirQueueManagerService service = new AirQueueManagerService(comparator);
+        AirQueue queue = new AirQueue(comparator);
+        AirQueueManagerService service = new AirQueueManagerService(queue);
         service.aqmRequestProcess(AirQueueManagerRequestType.START);
 
         // first batch

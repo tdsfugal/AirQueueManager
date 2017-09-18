@@ -1,6 +1,7 @@
 package web;
 
 import model.Aircraft;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,30 +20,30 @@ public class AirQueueManagerController {
 
     AirQueueManagerService service;
 
-    AirQueueManagerController() {
-        AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
-        this.service = new AirQueueManagerService(comparator);
+    @Autowired
+    AirQueueManagerController(AirQueueManagerService service) {
+        this.service = service;
     }
 
-    @RequestMapping(value="/", method=GET)
+    @GetMapping("/")
     public String start() {
         service.aqmRequestProcess(START);
-
-        Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
-        service.aqmRequestProcess(ENQUEUE, ac);
-
-        return "This should return the web page as a static HTML file";
+        return "index";
     }
 
 
-    @RequestMapping(value="/enqueue", method=POST)
-    public String enqueue(Object request) {
+    @PostMapping("/enqueue")
+    public String enqueue(String request) {
+
+        System.out.println(request);
+
         Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
         service.aqmRequestProcess(ENQUEUE, ac);
+
         return ac.toJson();
     }
 
-    @RequestMapping(value="/dequeue", method=GET)
+    @GetMapping("/dequeue")
     public String dequeue() {
         Aircraft ac = service.aqmRequestProcess(DEQUEUE);
         String json = (ac != null) ? ac.toJson() : "{}";

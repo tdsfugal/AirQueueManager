@@ -18,7 +18,7 @@ public class AirQueueSpot_Test {
         AirQueueSpot spot1 = new AirQueueSpot(new Aircraft());
         AirQueueSpot spot2 = new AirQueueSpot(new Aircraft());
 
-        Assert.assertTrue(spot1.getEnqueueOrder() < spot2.getEnqueueOrder());
+        Assert.assertTrue(spot1.getEnqueueIndex() < spot2.getEnqueueIndex());
     }
 
 }

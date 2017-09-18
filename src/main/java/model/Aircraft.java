@@ -5,6 +5,13 @@ import com.google.gson.annotations.Expose;
 
 import java.util.UUID;
 
+/**
+ *
+ *  The Aircraft class holds queue-independent information about a specific aircraft.
+ *
+ *  If a unique id is not provided with the aircraft then one is generated for it.
+ *
+ */
 public class Aircraft {
 
     /**
@@ -101,6 +108,12 @@ public class Aircraft {
         return "Aircraft " + id + " is a " + size + ", " + type + " aircraft.";
     }
 
+    /**
+     *
+     * Method toJson serializes the information contained in this POJO to a Json serialized string.
+     *
+     * @return
+     */
     public String toJson() {
         try {
             Gson g = new GsonBuilder().create();

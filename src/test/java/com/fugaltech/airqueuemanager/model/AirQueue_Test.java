@@ -1,7 +1,7 @@
-package model;
+package com.fugaltech.airqueuemanager.model;
 
+import com.fugaltech.airqueuemanager.service.AirQueuePriorityComparator;
 import org.junit.*;
-import service.AirQueuePriorityComparator;
 
 public class AirQueue_Test {
 

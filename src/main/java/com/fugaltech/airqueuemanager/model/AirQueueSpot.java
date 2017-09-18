@@ -1,4 +1,4 @@
-package model;
+package com.fugaltech.airqueuemanager.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

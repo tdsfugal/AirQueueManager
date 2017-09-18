@@ -1,18 +1,15 @@
-package web;
+package com.fugaltech.airqueuemanager.web;
 
-import model.Aircraft;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.web.bind.annotation.*;
-import service.AirQueueManagerService;
-import service.AirQueuePriorityComparator;
+import com.fugaltech.airqueuemanager.model.Aircraft;
+import com.fugaltech.airqueuemanager.service.AirQueueManagerRequestType;
+import com.fugaltech.airqueuemanager.service.AirQueueManagerService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import static service.AirQueueManagerRequestType.DEQUEUE;
-import static service.AirQueueManagerRequestType.ENQUEUE;
-import static service.AirQueueManagerRequestType.START;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import javax.inject.Inject;
 
 @RestController
 @EnableAutoConfiguration
@@ -20,14 +17,14 @@ public class AirQueueManagerController {
 
     AirQueueManagerService service;
 
-    @Autowired
+    @Inject
     AirQueueManagerController(AirQueueManagerService service) {
         this.service = service;
     }
 
     @GetMapping("/")
     public String start() {
-        service.aqmRequestProcess(START);
+        service.aqmRequestProcess(AirQueueManagerRequestType.START);
         return "index";
     }
 
@@ -38,14 +35,14 @@ public class AirQueueManagerController {
         System.out.println(request);
 
         Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
-        service.aqmRequestProcess(ENQUEUE, ac);
+        service.aqmRequestProcess(AirQueueManagerRequestType.ENQUEUE, ac);
 
         return ac.toJson();
     }
 
     @GetMapping("/dequeue")
     public String dequeue() {
-        Aircraft ac = service.aqmRequestProcess(DEQUEUE);
+        Aircraft ac = service.aqmRequestProcess(AirQueueManagerRequestType.DEQUEUE);
         String json = (ac != null) ? ac.toJson() : "{}";
         return json;
     }

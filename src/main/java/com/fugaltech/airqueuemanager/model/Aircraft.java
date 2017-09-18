@@ -1,7 +1,6 @@
-package model;
+package com.fugaltech.airqueuemanager.model;
 
 import com.google.gson.*;
-import com.google.gson.annotations.Expose;
 
 import java.util.UUID;
 

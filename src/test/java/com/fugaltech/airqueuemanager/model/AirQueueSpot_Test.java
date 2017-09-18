@@ -1,4 +1,4 @@
-package model;
+package com.fugaltech.airqueuemanager.model;
 
 import org.junit.Assert;
 import org.junit.Test;

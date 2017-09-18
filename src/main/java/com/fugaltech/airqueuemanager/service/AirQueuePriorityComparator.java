@@ -1,11 +1,12 @@
-package service;
+package com.fugaltech.airqueuemanager.service;
 
-import model.AirQueueSpot;
-import model.Aircraft;
+import com.fugaltech.airqueuemanager.model.AirQueueSpot;
+import com.fugaltech.airqueuemanager.model.Aircraft;
 
+import javax.inject.Named;
 import java.util.Comparator;
 
-
+@Named
 public class AirQueuePriorityComparator implements Comparator<AirQueueSpot> {
 
     @Override

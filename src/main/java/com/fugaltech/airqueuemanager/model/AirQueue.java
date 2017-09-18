@@ -1,9 +1,10 @@
-package model;
+package com.fugaltech.airqueuemanager.model;
 
+import com.fugaltech.airqueuemanager.service.AirQueuePriorityComparator;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.PriorityQueue;
-
-import org.springframework.stereotype.Service;
-import service.AirQueuePriorityComparator;
 
 /**
  *
@@ -12,12 +13,13 @@ import service.AirQueuePriorityComparator;
  * Sort order is defined by the AirQueuePriorityComparator.
  *
  */
-@Service
+@Named
 public class AirQueue {
 
     private AirQueuePriorityComparator comparator;
     private PriorityQueue<AirQueueSpot> queue;
 
+    @Inject
     public AirQueue(AirQueuePriorityComparator comparator) {
         this.comparator = comparator;
         queue = new PriorityQueue<AirQueueSpot>(this.comparator);

@@ -1,8 +1,9 @@
-package service;
+package com.fugaltech.airqueuemanager.service;
 
-import model.AirQueueSpot;
-import model.Aircraft;
-import org.junit.*;
+import com.fugaltech.airqueuemanager.model.AirQueueSpot;
+import com.fugaltech.airqueuemanager.model.Aircraft;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class AirQueuePriorityComparator_Test {
 

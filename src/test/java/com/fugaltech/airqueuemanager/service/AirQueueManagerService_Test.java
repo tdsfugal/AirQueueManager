@@ -1,7 +1,7 @@
-package service;
+package com.fugaltech.airqueuemanager.service;
 
-import model.AirQueue;
-import model.Aircraft;
+import com.fugaltech.airqueuemanager.model.AirQueue;
+import com.fugaltech.airqueuemanager.model.Aircraft;
 import org.junit.*;
 
 public class AirQueueManagerService_Test {

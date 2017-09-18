@@ -1,18 +1,18 @@
-package service;
+package com.fugaltech.airqueuemanager.service;
 
-import model.Aircraft;
-import model.AirQueue;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
+import com.fugaltech.airqueuemanager.model.AirQueue;
+import com.fugaltech.airqueuemanager.model.Aircraft;
 
-@Service
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@Named
 public class AirQueueManagerService {
 
     private AirQueue queue;
     private Boolean started;
 
-    @Autowired
+    @Inject
     public AirQueueManagerService(AirQueue queue) {
         this.queue = queue;
         started = false;

@@ -2,6 +2,7 @@ package com.fugaltech.aqm.service;
 
 import com.fugaltech.aqm.model.AirQueue;
 import com.fugaltech.aqm.model.Aircraft;
+import com.fugaltech.aqm.service.impl.AirQueueManagerServiceImpl;
 import org.junit.*;
 
 public class AirQueueManagerService_Test {
@@ -10,7 +11,7 @@ public class AirQueueManagerService_Test {
     public void TestServiceStart() {
         AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
         AirQueue queue = new AirQueue(comparator);
-        AirQueueManagerService service = new AirQueueManagerService(queue);
+        AirQueueManagerService service = new AirQueueManagerServiceImpl(queue);
 
         Aircraft foo = new Aircraft().type(Aircraft.Type.PASSENGER).size(Aircraft.Size.LARGE);
 
@@ -31,7 +32,7 @@ public class AirQueueManagerService_Test {
     public void TestServicePolicy() {
         AirQueuePriorityComparator comparator = new AirQueuePriorityComparator();
         AirQueue queue = new AirQueue(comparator);
-        AirQueueManagerService service = new AirQueueManagerService(queue);
+        AirQueueManagerService service = new AirQueueManagerServiceImpl(queue);
         service.aqmRequestProcess(AirQueueManagerRequestType.START);
 
         // first batch

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin sh
 
 echo Creating AirQueueManager API on LOCALHOST:8080
 

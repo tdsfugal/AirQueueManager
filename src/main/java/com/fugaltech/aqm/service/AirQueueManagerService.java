@@ -2,11 +2,13 @@ package com.fugaltech.aqm.service;
 
 import com.fugaltech.aqm.model.AirQueue;
 import com.fugaltech.aqm.model.Aircraft;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
+@ComponentScan("com.fugaltech.aqm.model")
 public class AirQueueManagerService {
 
     private AirQueue queue;

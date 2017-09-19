@@ -1,6 +1,9 @@
 package com.fugaltech.aqm.model;
 
 import com.fugaltech.aqm.service.AirQueuePriorityComparator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,15 +17,14 @@ import java.util.PriorityQueue;
  *
  */
 @Named
+@ComponentScan("com.fugaltech.aqm.service")
 public class AirQueue {
 
-    private AirQueuePriorityComparator comparator;
     private PriorityQueue<AirQueueSpot> queue;
 
     @Inject
     public AirQueue(AirQueuePriorityComparator comparator) {
-        this.comparator = comparator;
-        queue = new PriorityQueue<AirQueueSpot>(this.comparator);
+        queue = new PriorityQueue<AirQueueSpot>(comparator);
     }
 
     /**

@@ -5,6 +5,7 @@ import com.fugaltech.aqm.service.AirQueueManagerRequestType;
 import com.fugaltech.aqm.service.AirQueueManagerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 
 @RestController
 @EnableAutoConfiguration
+@ComponentScan("com.fugaltech.aqm.service")
 public class AirQueueManagerController {
 
     AirQueueManagerService service;

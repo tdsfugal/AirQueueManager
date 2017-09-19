@@ -1,0 +1,5 @@
+com/fugaltech/aqm/model/Aircraft_Test.class
+com/fugaltech/aqm/service/AirQueuePriorityComparator_Test.class
+com/fugaltech/aqm/model/AirQueue_Test.class
+com/fugaltech/aqm/model/AirQueueSpot_Test.class
+com/fugaltech/aqm/service/AirQueueManagerService_Test.class

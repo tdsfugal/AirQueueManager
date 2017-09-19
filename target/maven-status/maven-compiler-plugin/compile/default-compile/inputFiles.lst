@@ -1,0 +1,8 @@
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/model/AirQueueSpot.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/service/AirQueuePriorityComparator.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/service/impl/AirQueueManagerServiceImpl.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/model/AirQueue.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/web/AirQueueManagerController.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/service/util/AircraftJsonUtilities.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/service/AirQueueManagerService.java
+/Users/rezoomme/IdeaProjects/AirQueueManager/src/main/java/com/fugaltech/aqm/model/Aircraft.java

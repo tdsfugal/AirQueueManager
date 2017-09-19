@@ -2,12 +2,17 @@ package com.fugaltech.aqm.service.impl;
 
 import com.fugaltech.aqm.model.AirQueue;
 import com.fugaltech.aqm.model.Aircraft;
-import com.fugaltech.aqm.service.AirQueueManagerRequestType;
 import com.fugaltech.aqm.service.AirQueueManagerService;
+import com.fugaltech.aqm.service.util.AircraftJsonUtilities;
+import com.fugaltech.aqm.service.util.AircraftJsonUtilities.*;
+
 import org.springframework.context.annotation.ComponentScan;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import static com.fugaltech.aqm.service.util.AircraftJsonUtilities.aircraftToJson;
+import static com.fugaltech.aqm.service.util.AircraftJsonUtilities.jsonToAircraft;
 
 @Named
 @ComponentScan("com.fugaltech.aqm.model")
@@ -22,45 +27,62 @@ public class AirQueueManagerServiceImpl implements AirQueueManagerService {
         started = false;
     }
 
-    private Aircraft start() {
+    private String start() {
         started = true;
-        return null;
+        return "Queue Started";
     }
 
-    private Aircraft enqueue(Aircraft a) {
+    /**
+     *
+     * Enqueue returns a JSON representation of the added aircraft if the queue operation is successful.
+     *
+     * @param a
+     * @return
+     */
+    private String enqueue(String requestBody) {
         if (started) try {
-            queue.enqueue(a);
-            return a;
+
+            // Verify that request body conforms to contract.  (i.e. vaaidate)
+
+            Aircraft aircraft = AircraftJsonUtilities.jsonToAircraft(requestBody);
+            Aircraft response = queue.enqueue(aircraft);
+            if (response == null) throw new NullPointerException("Error adding aircraft in AirQueueManagerService.enqueue");
+            return response.toJson();
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
+            return "Error adding aircraft";
         }
-        return null;
+        return "Queue not Started";
     }
 
-    private Aircraft dequeue() {
+    /**
+     * Dequeue returns a JSON represntation of the highest priority aircraft in the queue.  If the queue is
+     * empty it returns an empty json object.  If the operation fails it reurns a diagnostic message.
+     *
+     * @return
+     */
+    private String dequeue() {
         if (started) try {
             Aircraft ac = queue.dequeue();
-            return ac;
+            return (ac != null) ? ac.toJson() : "{}";
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            return "Error removing aircraft";
         }
-        return null;
+        return "Queue not Started";
     }
 
+
     @Override
-    public Aircraft aqmRequestProcess(AirQueueManagerRequestType request, Aircraft aircraft) {
+    public String aqmRequestProcess(RequestType request, String requestBody) {
 
         switch (request) {
             case START:
-                return this.start();
+                return start();
 
             case ENQUEUE:
-                return this.enqueue(aircraft);
+                return enqueue(requestBody);
 
             case DEQUEUE:
-                return this.dequeue();
+                return dequeue();
 
             default:
                 return null;
@@ -68,7 +90,9 @@ public class AirQueueManagerServiceImpl implements AirQueueManagerService {
 
     }
 
-    public Aircraft aqmRequestProcess(AirQueueManagerRequestType request) {
-        return aqmRequestProcess(request, null);
+    @Override
+    public String aqmRequestProcess(RequestType request) {
+        return aqmRequestProcess(request, "");
     }
+
 }

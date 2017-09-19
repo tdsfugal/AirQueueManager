@@ -1,13 +1,15 @@
 package com.fugaltech.aqm.web;
 
 import com.fugaltech.aqm.model.Aircraft;
-import com.fugaltech.aqm.service.AirQueueManagerRequestType;
 import com.fugaltech.aqm.service.AirQueueManagerService;
+import com.fugaltech.aqm.service.AirQueueManagerService.RequestType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -26,27 +28,18 @@ public class AirQueueManagerController {
 
     @GetMapping("/")
     public String start() {
-        service.aqmRequestProcess(AirQueueManagerRequestType.START);
-        return "index";
+        return service.aqmRequestProcess(RequestType.START);
     }
 
 
     @PostMapping("/enqueue")
-    public String enqueue(String request) {
-
-        System.out.println(request);
-
-        Aircraft ac = new Aircraft("foo").size(Aircraft.Size.LARGE).type(Aircraft.Type.PASSENGER);
-        service.aqmRequestProcess(AirQueueManagerRequestType.ENQUEUE, ac);
-
-        return ac.toJson();
+    public String enqueue(@RequestBody String requestBody) {
+        return service.aqmRequestProcess(RequestType.ENQUEUE, requestBody);
     }
 
     @GetMapping("/dequeue")
     public String dequeue() {
-        Aircraft ac = service.aqmRequestProcess(AirQueueManagerRequestType.DEQUEUE);
-        String json = (ac != null) ? ac.toJson() : "{}";
-        return json;
+        return service.aqmRequestProcess(RequestType.DEQUEUE);
     }
 
     public static void main(String[] args) throws Exception {

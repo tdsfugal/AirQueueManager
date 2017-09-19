@@ -1,4 +1,4 @@
-package com.fugaltech.airqueuemanager.model;
+package com.fugaltech.aqm.model;
 
 import com.google.gson.*;
 

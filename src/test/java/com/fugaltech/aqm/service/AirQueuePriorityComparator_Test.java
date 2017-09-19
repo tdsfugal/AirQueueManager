@@ -1,7 +1,7 @@
-package com.fugaltech.airqueuemanager.service;
+package com.fugaltech.aqm.service;
 
-import com.fugaltech.airqueuemanager.model.AirQueueSpot;
-import com.fugaltech.airqueuemanager.model.Aircraft;
+import com.fugaltech.aqm.model.AirQueueSpot;
+import com.fugaltech.aqm.model.Aircraft;
 import org.junit.Assert;
 import org.junit.Test;
 

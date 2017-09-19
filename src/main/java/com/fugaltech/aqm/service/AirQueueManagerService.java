@@ -1,7 +1,7 @@
-package com.fugaltech.airqueuemanager.service;
+package com.fugaltech.aqm.service;
 
-import com.fugaltech.airqueuemanager.model.AirQueue;
-import com.fugaltech.airqueuemanager.model.Aircraft;
+import com.fugaltech.aqm.model.AirQueue;
+import com.fugaltech.aqm.model.Aircraft;
 
 import javax.inject.Inject;
 import javax.inject.Named;

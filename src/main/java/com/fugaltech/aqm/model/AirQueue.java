@@ -1,6 +1,6 @@
-package com.fugaltech.airqueuemanager.model;
+package com.fugaltech.aqm.model;
 
-import com.fugaltech.airqueuemanager.service.AirQueuePriorityComparator;
+import com.fugaltech.aqm.service.AirQueuePriorityComparator;
 
 import javax.inject.Inject;
 import javax.inject.Named;

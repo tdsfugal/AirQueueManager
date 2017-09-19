@@ -1,8 +1,8 @@
-package com.fugaltech.airqueuemanager.web;
+package com.fugaltech.aqm.web;
 
-import com.fugaltech.airqueuemanager.model.Aircraft;
-import com.fugaltech.airqueuemanager.service.AirQueueManagerRequestType;
-import com.fugaltech.airqueuemanager.service.AirQueueManagerService;
+import com.fugaltech.aqm.model.Aircraft;
+import com.fugaltech.aqm.service.AirQueueManagerRequestType;
+import com.fugaltech.aqm.service.AirQueueManagerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;

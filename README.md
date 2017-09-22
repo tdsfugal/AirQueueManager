@@ -65,3 +65,47 @@ $ . RUNME.sh
 
 The API should now be running on LOCALHOST:8080.  
 
+
+## BUILD
+
+AirQueueManager is a stand-alone SpringBoot project built with Java 1.8 and Maven.  The repository contains a stable build of the 
+system as a .jar file in the /target directory.  These instructions are for developers.
+
+(1) Verify that you have Java 1.8 installed and the environment variable JAVA_HOME is set to point to the JDK 
+installation directory.  You should get something similar to this as output from running these 
+shell commands (From an OSX install):
+
+```bash
+$ java -version
+java version "1.8.0_131"
+Java(TM) SE Runtime Environment (build 1.8.0_131-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)
+
+$ echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+```
+
+If you need to install java go to www.oracle.com/technetwork/java/javase/downloads/index.html
+
+(2) Verify that you have Apache Maven installed:
+
+```bash
+$ mvn -version
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T15:39:06-04:00)
+Maven home: /Users/rezoomme/Applications/apache-maven-3.5.0
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+```
+
+If you need to install Maven go to maven.apache.org  
+
+(3) Clone the repository and run maven to compile and pacakge the jar file before running it:
+
+```bash
+$ git clone https://github.com/tdsfugal/AirQueueManager.git
+$ cd AirQueueManager
+$ mvn clean package
+$ . RUNME.sh
+```

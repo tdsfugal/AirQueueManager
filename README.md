@@ -16,7 +16,14 @@ The JSON schema for aircraft in AirQueueManager is:
  }
  
  ```
+
+The aircraft id string is optional.  If one is not provided then the system will create a unique id for the aircraft so it can 
+be tracked in the queue by the user.  The system makes no use of the id field. 
  
+Both type and size defalut to UNKNOWN if the provided string is not of the proper form.  
+ 
+## API
+
 The API accepts the following calls:
 
 1) GET "/" - Starts the queue

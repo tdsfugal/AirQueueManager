@@ -4,15 +4,15 @@ The air queue manager package maintains a sorted queue of aircraft that satisfie
 
 1) **Type** - Passenger aircraft dequeue before cargo aircraft
 2) **Size** - Large aircraft dequeue before small aircraft if they are the same type
-3) **Age in Queue** - Aircraft that have been in the queue longer dequeued before other aircraft of similar type and size 
+3) **Age in Queue** - Aircraft that have been in the queue longer have priority over other aircraft of similar type and size 
  
 The JSON schema for aircraft in AirQueueManager is:
 
  ```json
  {
    id: <String>,
-   type: <"PASSENGER" or "CARGO">,
-   size: <"LARGE" or "SMALL">
+   type: <String, either "PASSENGER" or "CARGO">,
+   size: <String, either "LARGE" or "SMALL">
  }
  
  ```
@@ -108,7 +108,7 @@ OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
 
 If you need to install Maven go to maven.apache.org  
 
-(3) Clone the repository and run maven to compile and pacakge the jar file before running it:
+(3) Clone the repository and run maven to compile and package the jar file before running it:
 
 ```bash
 $ git clone https://github.com/tdsfugal/AirQueueManager.git
